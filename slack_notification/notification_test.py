@@ -1,8 +1,7 @@
 from notification import send_message,get_config_info
 
 def main():
-    TOKEN,CHANNEL = get_config_info()
-    r = send_message(token=TOKEN,channel=CHANNEL,message='This is test message')
+    r = send_message(message='This is test message',username='test user')
     print("return ", r.json())
 
 if __name__ == "__main__":

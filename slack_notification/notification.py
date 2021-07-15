@@ -15,17 +15,19 @@ def get_config_info() -> str:
     CHANNEL = data["channel"] # チャンネル名
     return TOKEN, CHANNEL
 
-def send_message(token:str, channel:str, message:str):
+def send_message(message:str,username='from_notification'):
+    token,channel = get_config_info() #configから情報を取得
     api_url = "https://slack.com/api/chat.postMessage"
-    headers = {"Authorization": "Bearer "+token}
+    headers = {"Authorization": "Bearer " + token}
     data  = {
         'channel': channel,
-        'text': message
+        'text': message,
+        'username': username
     }
     return requests.post(api_url, headers=headers, data=data) # 送信 and 値をreturn
 
 def main():
-    TOKEN,CHANNEL = get_config_info()
+    send_message(message="test")
 
 if __name__ == "__main__":
     main()
